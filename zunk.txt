@@ -1,0 +1,158 @@
+
+# Close the database connection
+        # conn.close()
+
+                # print(f"Copied to database: {clipboard_content}")
+
+                # Insert the new clipboard content into the database
+                # cursor.execute("INSERT INTO clipboard_history (content) VALUES (?)", (clipboard_content,))
+                # conn.commit()
+            # Check for changes every second
+
+# Create or connect to a SQLite database
+# conn = sqlite3.connect('clipboard_history.db')
+# cursor = conn.cursor()
+
+# # Create a table to store clipboard history
+# cursor.execute('''CREATE TABLE IF NOT EXISTS clipboard_history (
+#                      id INTEGER PRIMARY KEY AUTOINCREMENT,
+#                      content TEXT,
+#                      timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+#                  )''')
+# conn.commit()
+
+# Variable to keep track of the last copied content
+
+# from prisma import Prisma  # Keep this if you need Prisma; otherwise, you can omit it.
+# import tkinter as tk  # Corrected import
+
+# def window():
+#     root = tk.Tk()
+#     root.title("Hello World App")
+
+#     label = tk.Label(root, text="Hello, World!", font=("Arial", 24))
+#     label.pack(pady=20)
+
+#     root.mainloop()
+
+# if __name__ == '__main__': 
+#     window()
+
+# async def main():
+#     # Initialize Prisma client
+#     prisma = Prisma()
+#     await prisma.connect()
+
+#     # Create a new user
+#     new_user = await prisma.history.create(
+#         data={
+#             "contents": "Alice",
+#             "details": "alice@example.com",
+#         }
+#     )
+#     print(new_user)
+
+#     # Disconnect Prisma
+#     await prisma.disconnect()
+
+# # Run the main function
+# import asyncio
+# asyncio.run(main())
+
+# def name():
+#     print('SYED AMIR ALI')
+
+
+    # asyncio.run(test_fetch_history())
+    # exit()
+    # Start the clipboard watcher in a separate thread
+# import asyncio
+# import src.window as window
+# from src.clipboard import watch_clipboard
+
+# async def main():
+#     asyncio.run(watch_clipboard())
+#     root = window.create_window()
+#     root.mainloop()
+
+# if __name__=='__main__':
+#     # asyncio.run(main())
+#     asyncio.run(watch_clipboard())
+
+# async def clipboard_histories():
+#     try:
+#         if not prisma_client.is_connected:  # Check if already connected
+#             await prisma_client.connect()
+
+#         histories = await prisma_client.history.find_many(order={"id": "desc"})
+#         return [history.dict() for history in histories]  # Convert to dict for JSON serialization
+
+#     except prisma.errors.ClientNotConnectedError as e:
+#         print("Client not connected:", e)
+#         return []  # Return an empty list or handle as needed
+
+#     except Exception as e:
+#         print("An error occurred while fetching clipboard histories:", e)
+#         return []  # Handle other exceptions gracefully
+
+# @app.route('/history', methods=['GET'])
+# def get_history():
+#     # db.connect()
+#     histories = History.prisma().find_many(order={'id': 'desc'})
+#     # return jsonify([history.dict() for history in histories])
+#     # print(histories)
+#     # return [history.dict() for history in histories]
+#     return jsonify([history.dict() for history in histories])
+
+# async def test_fetch_history():
+#     db = prisma.Prisma()
+#     prisma.register(db)
+#     await db.connect()
+#     histories = await History.prisma().find_many(order={'id': 'desc'})
+#     print([history.dict() for history in histories])
+#     await db.disconnect()
+
+# def test_fetch_history():
+#     db = prisma.Prisma()
+#     db.connect()
+#     histories = History.prisma().find_many(order={'id': 'desc'})
+#     print([history.dict() for history in histories])
+#     db.disconnect()
+# In-memory storage for clipboard history
+# clipboard_history = []
+
+# @app.before_request
+# async def before_req():
+#     await prisma_client.connect()
+    # histories = await clipboard_histories()
+    # return jsonify(histories)
+
+    # return jsonify(clipboard_history)
+    # return jsonify(asyncio.run(clipboard_histories()))
+# @app.route('/add', methods=['POST'])
+# def add_clipboard_item():
+#     content = request.json.get('content')
+#     if content:
+#         clipboard_history.append(content)
+#         return jsonify({"status": "success", "message": "Content added."}), 201
+#     return jsonify({"status": "error", "message": "No content provided."}), 400
+
+# async def clipboard_watcher():
+#     last_copied_text = ""
+#     while True:
+#         clipboard_content = pyperclip.paste()
+        
+#         if clipboard_content != last_copied_text:
+#             last_copied_text = clipboard_content
+            
+#             # Send the new clipboard content to the API
+#             try:
+#                 requests.post('http://localhost:5000/add', json={"content": last_copied_text})
+#             except requests.exceptions.RequestException as e:
+#                 print(f"Error sending to API: {e}")
+        
+#         await asyncio.sleep(1)
+
+# @app.teardown_appcontext
+# async def teardown_appcontext(exception):
+#     await prisma_client.disconnect()
