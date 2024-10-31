@@ -156,3 +156,25 @@
 # @app.teardown_appcontext
 # async def teardown_appcontext(exception):
 #     await prisma_client.disconnect()
+
+
+    // setData(function (prevState) {
+    //     const newState = [history, ...prevState];
+    //     console.log("helo");
+    //     return newState;
+    // });
+    // console.log("route", window.route());
+    // },
+    // [isLoading, error, data]
+    // );
+
+    // useEffect(function () {
+    // const wss = new WebSocket(window.socketUrl);
+    // wss.onopen = () => console.log("Socket Listener ON.");
+
+    // wss.onmessage = function (event) {
+    //     const data = JSON.parse(event.data);
+    //     console.log("EVENT: ", data);
+    // };
+
+    // wss.onerror = (e) => console.log("Socket Listener Error.", e);

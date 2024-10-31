@@ -1,0 +1,10 @@
+{
+    "manifest_version": 3,
+    "name": "Clipboard History",
+    "version": "2.0",
+    "description": "Clipboard History",
+    "permissions": ["activeTab"],
+    "action": {
+        "default_popup": "index.html"
+    }
+}

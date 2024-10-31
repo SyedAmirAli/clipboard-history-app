@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.scrollbar-primary::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    /* @apply bg-slate-900; */
+    background-color: rgb(15 23 42);
+}
+.scrollbar-primary::-webkit-scrollbar-thumb:hover {
+    background: rgba(181, 0, 99, 50);
+}
+.scrollbar-primary:hover::-webkit-scrollbar-thumb {
+    background: rgba(181, 0, 99, 0.3);
+}
+.scrollbar-primary::-webkit-scrollbar-thumb {
+    background: rgb(148 163 184);
+    border: 3px solid var(--white);
+    -webkit-border-radius: 20px;
+}
+
+.has-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: rgb(15 23 42);
+    border-radius: 12px;
+    padding: 4px;
+    transition: 400ms;
+}
+.has-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(0, 0%, 80%);
+}
+/* .has-scrollbar:hover::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+} */
+.has-scrollbar:hover::-webkit-scrollbar-thumb {
+    background: hsl(0, 0%, 90%);
+}
+.has-scrollbar::-webkit-scrollbar-thumb {
+    background: rgb(148 163 184);
+    border: 3px solid var(--white);
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.pulse-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.pulse-bubble {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50%;
+}
+
+.pulse-bubble-1 {
+    animation: pulse 0.4s ease 0s infinite alternate;
+}
+.pulse-bubble-2 {
+    animation: pulse 0.4s ease 0.2s infinite alternate;
+}
+.pulse-bubble-3 {
+    animation: pulse 0.4s ease 0.4s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0.25;
+        transform: scale(0.75);
+    }
+}
