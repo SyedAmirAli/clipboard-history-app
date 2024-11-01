@@ -178,3 +178,37 @@
     // };
 
     // wss.onerror = (e) => console.log("Socket Listener Error.", e);
+
+# # make history create function
+# def insert_clipboard_content(content):
+#     conn, cursor = connect_db() 
+
+#     # print(f"LAST: {last_copied_text}")
+#     # if last_copied_text == content:
+#         # return None
+
+#     # Use parameterized query to safely check for existing content WHERE content = ?
+#     check_last_content = cursor.execute(f"SELECT * FROM {table_name} ORDER BY id DESC;")
+#     get_last_content = check_last_content.fetchone()
+
+#     if check_last_content and get_last_content[1] == content or get_last_content[1] == last_copied_text:
+#         return None
+
+#     # print(f"\nLast Content: {get_last_content}\n")
+
+#     # if get_last_content:
+#     #     exist_history = dict(zip(column_names, get_last_content))
+
+#     #     if get_last_content and content == exist_history['content']: 
+#     #         print(f"\nExists: {exist_history['content']}\n New: {content}")
+#     #         conn.close()
+#     #         return None
+
+#     cursor.execute(f"INSERT INTO {table_name} (content) VALUES (?);", (content,))
+#     conn.commit()
+
+#     history = cursor.execute(f"SELECT * FROM {table_name} WHERE id = ?;", (cursor.lastrowid,))
+#     new_history = history.fetchone()
+
+#     conn.close()   
+#     return new_history   

@@ -19,7 +19,7 @@ socketio = SocketIO(app, cors_allowed_origins="*", async_mode="threading")
 column_names = ["id", "content", "timestamp", "status", "pin"]
 
 def connect_db():
-    conn = sqlite3.connect("database/clipboard_histories.sqlite")
+    conn = sqlite3.connect("/media/amir/STORE/personal/clipboard-history-app/database/clipboard_histories.sqlite")
     cursor = conn.cursor()
     return conn, cursor
  
@@ -55,39 +55,27 @@ def get_clipboard_contents(limit=100, order='DESC'):
     conn.close()
     return contents
 
-# make history create function
 def insert_clipboard_content(content):
     conn, cursor = connect_db() 
 
-    # print(f"LAST: {last_copied_text}")
-    # if last_copied_text == content:
-        # return None
-
-    # Use parameterized query to safely check for existing content WHERE content = ?
+    # Fetch the last entry from the database
     check_last_content = cursor.execute(f"SELECT * FROM {table_name} ORDER BY id DESC;")
     get_last_content = check_last_content.fetchone()
 
-    if get_last_content[1] == content or get_last_content[1] == last_copied_text:
-        return None
-
-    print(f"\nLast Content: {get_last_content}\n")
-
-    # if get_last_content:
-    #     exist_history = dict(zip(column_names, get_last_content))
-
-    #     if get_last_content and content == exist_history['content']: 
-    #         print(f"\nExists: {exist_history['content']}\n New: {content}")
-    #         conn.close()
-    #         return None
-
+    # Ensure get_last_content is not None before attempting to access it
+    if get_last_content is not None and (get_last_content[1] == content or get_last_content[1] == last_copied_text):
+        conn.close()
+        return None   
+    # Insert the new content if no duplicate found
     cursor.execute(f"INSERT INTO {table_name} (content) VALUES (?);", (content,))
     conn.commit()
 
+    # Retrieve the newly inserted row for confirmation
     history = cursor.execute(f"SELECT * FROM {table_name} WHERE id = ?;", (cursor.lastrowid,))
     new_history = history.fetchone()
 
-    conn.close()   
-    return new_history   
+    conn.close()
+    return new_history  
 
 
 def last_history():
